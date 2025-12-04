@@ -31,6 +31,13 @@ CREATE TABLE Product(
         ON UPDATE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
 
+-- B-Tree Index for query 3
+ALTER TABLE Product
+	ADD INDEX idx_product_isfeatured_title (IsFeatured, Title);
+-- B-Tree Index for query 6
+ALTER TABLE Product
+  ADD INDEX idx_product_discount_title (DiscountPercent, Title);
+  
 -- KEYWORD
 CREATE TABLE Keyword(
 	KeywordID INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -68,6 +75,10 @@ CREATE TABLE Orders(
 		ON DELETE RESTRICT
         ON UPDATE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
+-- B-Tree Index for query 7 (optional challenging)
+ALTER TABLE Orders
+  ADD INDEX idx_orders_orderdate_orderid (OrderDate, OrderID);
+
 
 -- PRODUCT_KEYWORD
 CREATE TABLE Product_Keyword(
@@ -98,7 +109,7 @@ CREATE TABLE User_Product(
          ON UPDATE CASCADE
 )ENGINE = InnoDB DEFAULT CHARSET = UTF8MB4;
 
--- ORDER PRODUCT
+-- ORDER_PRODUCT
 CREATE TABLE Order_Product(
 	ProductID INT UNSIGNED NOT NULL,
     OrderID INT UNSIGNED NOT NULL,

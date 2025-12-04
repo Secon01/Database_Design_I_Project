@@ -1,0 +1,3 @@
+EXPLAIN
+"-> Index lookup on Department using ParentDepartmentID (ParentDepartmentID = NULL), with index condition: (department.ParentDepartmentID is null)  (cost=0.35 rows=1)
+"
